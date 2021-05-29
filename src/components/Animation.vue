@@ -18,12 +18,9 @@ export default {
       animation: function (params) {
         const words = document.querySelectorAll("#word"),
         animation = document.querySelector(".animation");
-        console.log(words);
         var setInt = setInterval(() => {
           this.index++;
-          console.log(this.index);
           const word = words[this.index];
-          console.log(word);
           word.style.transform = 'scale(1)';
           word.style.opacity = 1;
           if (this.index == words.length - 1) {
