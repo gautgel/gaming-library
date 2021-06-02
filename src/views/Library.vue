@@ -2,8 +2,8 @@
     <div class="library">
         <SearchBar v-on:handleEnter="handleKeyEnter($event)" v-on:handleSearch="handleChange($event)"></SearchBar>
         <Animation v-if="!done" v-on:endAnimation="animationEnded($event)"></Animation>
-        <div class="card_container">
-        <Card v-for="game in games" :key="game.name" v-bind:name="game.name" v-bind:rate="game.rate" v-bind:platforms="game.platform" v-bind:release-d="game.releaseD" v-bind:picture-src="game.cover" ></Card>
+        <div v-else class="card_container">
+        <Card v-for="game in searchFilter" v-bind:key="game.name" v-bind:name="game.name" v-bind:rate="game.rate" v-bind:platforms="game.platform" v-bind:release-d="game.releaseD" v-bind:picture-src="game.cover" ></Card>
         </div>
     </div>
 </template>
@@ -25,7 +25,6 @@ export default {
     data() {
         return {
             done: false,
-            disapear: false,
             search: "",
             games: [],
         }
@@ -37,7 +36,12 @@ export default {
         handleChange: function (event) {
             this.search = event;
         },
-        handleKeyEnter: function(event) {
+        // handleKeyEnter: function(event) {
+        // },
+    },
+    computed:{
+        searchFilter: function() {
+            return this.games.filter( game=> game.name.toLowerCase().includes(this.search.toLowerCase()));
         }
     },
     // beforeCreate -> you call api

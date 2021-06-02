@@ -58,16 +58,17 @@ export default {
             justify-content: center;
             align-items: flex-start;
             position: absolute;
-            background: rgba(38, 33, 46, 0.6);
-            top: 100%;
-            left: 0;
+            background: rgba(38, 33, 46, 0.7);
+            top: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            transition: 0.2s ease-in-out 0.35s top;
+            transition: 0.6s ease-in-out;
+            .name{
+                font-size: 2rem;
+            }
             .release_date, .name, .rate_container, .plats_container{
-                margin-left: 5px;
-                span{
-                }
+                margin: 5px;
             }
             .plats_container{
                 display: flex;
@@ -115,7 +116,7 @@ export default {
     .game_card:hover{
         cursor: pointer;
         .info_container{
-            top: 0;
+            left: 0;
         }
     }
     .game_card:hover .cover{

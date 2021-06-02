@@ -94,3 +94,11 @@ body{
     }
   }
 }
+body::-webkit-scrollbar{
+  width: 0.5rem;
+}
+body::-webkit-scrollbar-thumb{
+  background-color: #4A4453;
+  width: 0.4rem;
+  border-radius: 1rem;
+}

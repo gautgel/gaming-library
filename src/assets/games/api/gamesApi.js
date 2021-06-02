@@ -27,6 +27,20 @@ let api = [
         rate: "4.5",
         releaseD: "06/12/2018",
     },
+    {
+        name: 'zazaz',
+        platform: ['windows', 'switch', 'Mac OS'],
+        cover:'hades.jpg',
+        rate: "4.5",
+        releaseD: "06/12/2018",
+    },
+    {
+        name: 'gergr',
+        platform: ['windows', 'switch', 'Mac OS'],
+        cover:'hades.jpg',
+        rate: "4.5",
+        releaseD: "06/12/2018",
+    },
 ]
 
 export default api
