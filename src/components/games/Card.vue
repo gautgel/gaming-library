@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="game_card">
+    <div class="game_card carousel-cell">
         <!-- <img v-bind:src="require(`@/assets/games/img/covers/${pictureSrc}`)" v-bind:alt="name + ' cover'"><div class="mirror_effect"></div></img> -->
         <div class="cover" v-bind:style="{'background-image': 'url(' + require(`@/assets/games/img/covers/${pictureSrc}`)+ ')'}" v-bind:alt="name + ' cover'">
             <div class="info_container">

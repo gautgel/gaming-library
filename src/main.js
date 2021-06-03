@@ -4,10 +4,12 @@ import router from './router'
 import store from './store'
 import './assets/scss/global.scss'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import {faCaretLeft} from '@fortawesome/free-solid-svg-icons'
+import {faCaretRight} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faSearch)
+library.add(faSearch, faCaretRight, faCaretLeft)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
