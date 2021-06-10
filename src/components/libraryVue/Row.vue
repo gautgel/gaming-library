@@ -9,7 +9,8 @@
             </div>
         </div>
         <Flickity ref="flickity" :options="flickityOptions">
-            <Card v-for="game in array" v-bind:key="game.name" v-bind:name="game.name" v-bind:rate="game.rate" v-bind:platforms="game.platform" v-bind:release-d="game.releaseD" v-bind:picture-src="game.cover"></Card>
+            <!-- <router-link :to="{}"></router-link> -->
+            <Card v-for="game in array" v-bind:key="game.id" v-bind:name="game.name" v-bind:rate="game.rate" v-bind:platforms="game.platform" v-bind:release-d="game.releaseD" v-bind:picture-src="game.cover"></Card>
         </Flickity>
     </div>
 </template>
@@ -50,53 +51,3 @@ export default {
     },
 }
 </script>
-<style lang="scss">
-    .row{
-        position: relative;
-        width: 100%;
-        .title_line{
-            position: relative;
-            .title{
-                position: absolute;
-                background: #26212E;
-                padding: 0px 10px;
-                z-index: 2;
-                border-radius: 5rem;
-                top: 50%;
-                left: 5%;
-                transform: translateY(-50%);
-            }
-            .line{
-                z-index: 1;
-                position: absolute;
-                width: 100%;
-                height: 1px;
-                background: rgba(253, 247, 248, 0.5);
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            .btns_container{
-                position: absolute;
-                z-index: 2;
-                display: flex;
-                align-items: center;
-                top: 50%;
-                transform: translateY(-50%);
-                right: 5%;
-                background: #26212E;
-                .logo{
-                    padding: 0px 10px;
-                    font-size: 1.5rem;
-                    transition: .3s;
-                    border-radius: 0.2rem;
-                }
-                .logo:hover{
-                    background: #4A4453;
-                }
-            }
-        }
-        .flickity-slider{
-            left: 20px !important;
-        }
-    }
-</style>

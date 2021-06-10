@@ -1,6 +1,10 @@
 <template>
-    <div class="library">
+    <div v-bind:class="'library ' + this.theme">
         <SearchBar v-on:handleEnter="handleKeyEnter($event)" v-on:handleSearch="handleChange($event)"></SearchBar>
+        <div class="setMode">
+            <font-awesome-icon v-if="this.$store.state.theme == 'dark'" icon="moon" class="logo" v-on:click="changeMode()"/>
+            <font-awesome-icon v-else icon="sun" class="logo" v-on:click="changeMode()"/>
+        </div>
         <Animation v-if="!done" v-on:endAnimation="animationEnded($event)"></Animation>
         <div v-else class="container">
             <div v-if="searching" class="card_container">
@@ -20,7 +24,6 @@ import Animation from '@/components/Animation.vue'
 import SearchBar from '@/components/libraryVue/SearchBar.vue'
 import Card from '@/components/games/Card.vue'
 import Row from '@/components/libraryVue/Row.vue'
-import api from '@/assets/games/api/gamesApi.js'
 
 
 export default {
@@ -38,7 +41,8 @@ export default {
             searching: false,
             games: [],
             wishList: [],
-            userLibrary: []
+            userLibrary: [],
+            theme: "",
         }
     },
     methods: {
@@ -53,24 +57,30 @@ export default {
                 this.searching = false
             }
         },
+        changeMode: function () {
+            this.$store.dispatch('changeMode', this.$store.state.theme)
+            document.body.classList.remove(this.theme);
+            this.theme = this.$store.state.theme
+            document.body.classList.add(this.theme);
+        }
         // handleKeyEnter: function(event) {
         // },
     },
     computed:{
         searchFilter: function() {
             return this.games.filter( game => game.name.toLowerCase().includes(this.search.toLowerCase()));
-        }
+        },
     },
     // beforeCreate -> you call api
     beforeCreate() {
-        
-    },
-    // after being created -> you use the api
+        },
+    // after being created -> you use the api in store
     beforeMount() {
-        this.games = api.games
-        this.wishList = api.userWishList
-        this.userLibrary = api.userLibrary
-        console.log(this.games)
+        this.games = this.$store.getters.getGames
+        this.wishList = this.$store.getters.getUserWishList
+        this.userLibrary = this.$store.getters.getUserLibrary
+        this.theme = this.$store.getters.getActualTheme
+        document.body.classList.add(this.theme);
     },
     mounted() {
     },

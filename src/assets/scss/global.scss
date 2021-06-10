@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;800&display=swap');
 
+// change the body's background when dark mode is set up
+body.dark{
+  background: #26212E;
+}
+// same for the light mode
+body.light{
+  background: #FDF7FF;
+}
 body{
   width: 100%;
   margin: 0;
@@ -9,12 +17,79 @@ body{
   font-size: 1em;
   font-family: 'Montserrat';
   color: #FDF7FF;
-  background: #26212E;
   overflow-x: hidden;
   overflow-y: auto;
   #app{
     position: relative;
     width: 100%;
+    // change colors when dark mode is set up
+    .dark{
+      .search_bar{
+        background: #4A4453;
+        .logo:hover{
+          color: #AFA8BA;
+        }
+      }
+      .setMode{
+        .logo{
+          color: #FDF7FF;
+        }
+        .logo:hover{
+          color: #AFA8BA;
+        }
+      }
+      .row{
+        .title_line{
+          .title{
+            background: #26212E;
+            color: #FDF7FF;
+          }
+          .line{
+            background: rgb(253, 247, 248);
+          }
+          .btns_container{
+            background: #26212E;
+            .logo{
+              color: #FDF7FF;
+            }
+          }
+        }
+      }
+    }
+    // change colors when light mode is set up
+    .light{
+      .search_bar{
+        background: #26212E;
+        .logo:hover{
+          color: #AFA8BA;
+        }
+      }
+      .setMode{
+        .logo{
+          color: #26212E;
+        }
+      }
+      .row{
+        .title_line{
+          .title{
+            background: #FDF7FF;
+            color: #26212E;
+          }
+          .line{
+            background: rgb(38, 33, 46);
+          }
+          .btns_container{
+            background: #FDF7FF;
+            .logo{
+              color: #26212E;
+            }
+            .logo:hover{
+              color: #FDF7FF;
+            }
+          }
+        }
+      }
+    }
     .library{
       display: flex;
       flex-direction: column;
@@ -22,6 +97,20 @@ body{
       justify-content: flex-start;
       position: relative;
       width: 100%;
+      min-height: 100vh;
+      .setMode{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        .logo{
+          font-size: 1rem;
+          transition: .2s;
+        }
+        .logo:hover{
+          cursor: pointer;
+        }
+      }
+      // class for the animation when app is loaded for the first time
       .animation{
         position: absolute;
         top: 0;
@@ -58,7 +147,6 @@ body{
         width: 70%;
         padding: 5px;
         margin: 5px;
-        background: #4A4453;
         border-radius: 5px;
         .logo{
           position: absolute;
@@ -67,9 +155,6 @@ body{
           transition: .2s;
           cursor: pointer;
           font-size: 1.3rem;
-        }
-        .logo:hover{
-          color: #AFA8BA;
         }
         input{
           width: 80%;
@@ -88,6 +173,152 @@ body{
         input::selection{
           color: #FDF7FF;
           background:#3E3450;
+        }
+      }
+      // class row defines the elem in which cards would be displayed
+      .row{
+        position: relative;
+        width: 100%;
+        .title_line{
+          position: relative;
+          .title{
+            position: absolute;
+            padding: 0px 10px;
+            z-index: 2;
+            border-radius: 5rem;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            user-select: none;
+          }
+          .line{
+            z-index: 1;
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .btns_container{
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 5%;
+            .logo{
+                padding: 0px 10px;
+                font-size: 1.5rem;
+                transition: .3s;
+                border-radius: 0.2rem;
+            }
+            .logo:hover{
+                cursor: pointer;
+                background: #4A4453;
+            }
+          }
+        }
+        // fix the flickity issue because of the cards animation -> when carousel is set to begin at left, we don't see all the animation
+        .flickity-slider{
+          left: 20px !important;
+        }
+        // setting the class for cards as well as their aniamtion in 3d
+        .game_card{
+          position: relative;
+          width: 250px;
+          height: 350px;
+          margin: 50px;
+          perspective: 1000px;
+          .cover{
+            z-index: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            transition: transform .15s ease-in-out;
+            transform-origin: top center;
+            transform-style: preserve-3d;
+            perspective-origin: 50% 50%;
+            transform: skew(0.001deg);
+            box-shadow: 0px 10px 15px 3px rgba(0,0,0,0.5);
+            overflow: hidden;
+          }
+          .info_container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: absolute;
+            background: rgba(38, 33, 46, 0.7);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            transition: 0.6s ease-in-out;
+            .name{
+              font-size: 2rem;
+            }
+            .release_date, .name, .rate_container, .plats_container{
+              margin: 5px;
+            }
+            .plats_container{
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-start;
+              span:after{
+                content: "/";
+                position: relative;
+                right: 0;
+              }
+              span:last-child:after{
+                content: "";
+              }
+            }
+          }
+          .cover:after{
+            content: '';
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 110%;
+            height: 120%;
+            background:0 linear-gradient(226deg, 
+                rgba(255,255,255,0.4) 0%,
+                rgba(255,255,255,0.4) 35%,
+                rgba(255,255,255,0.2) 42%,
+                rgba(255,255,255,0) 60%,);
+            transform: translateY(-20%);
+            transition: transform 0.65s cubic-bezier(0.18,0.9,0.58,1);
+          }
+        }
+        .game_card:after{
+          display: block;
+          content: '';
+          position: absolute;
+          top: 5%;
+          left: 5%;
+          width: 90%;
+          height: 90%;
+          background: rgba(0,0,0,0.5);
+          box-shadow:  0 6px 12px 12px rgba(0,0,0,0.4);
+          transition: transform 0.35s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        .game_card:hover{
+            cursor: pointer;
+            .info_container{
+                left: 0;
+            }
+        }
+        .game_card:hover .cover{
+            transform: rotateX(7deg) translateY(-6px);
+        }
+        .game_card:hover .cover:after{
+            transform: translateY(-6px);
+        }
+        .game_card:hover::after{
+            transform: rotateX(7deg) translateY(-6deg) scale(1.05);
         }
       }
     }

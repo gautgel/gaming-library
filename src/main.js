@@ -5,11 +5,9 @@ import store from './store'
 import './assets/scss/global.scss'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import {faCaretLeft} from '@fortawesome/free-solid-svg-icons'
-import {faCaretRight} from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faCaretLeft, faCaretRight, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faSearch, faCaretRight, faCaretLeft)
+library.add(faSearch, faCaretRight, faCaretLeft, faMoon, faSun)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
